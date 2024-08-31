@@ -1384,7 +1384,6 @@ status_t EffectModule::setVolumeInternal(
                                                 &size,
                                                 pVolume);
     if (controller && status == NO_ERROR && size == sizeof(volume)) {
-        mVolume = {*left, *right}; // Cache the value that has been set
         *left = volume[0];
         *right = volume[1];
     }
@@ -2599,7 +2598,6 @@ bool EffectChain::setVolume_l(uint32_t* left, uint32_t* right, bool force) {
         }
         return volumeControlIndex.has_value();
     }
-    mVolumeControlEffect = volumeControlEffect;
 
     if (volumeControlEffect != cachedVolumeControlEffect) {
         // The volume control effect is a new one. Set the old one as full volume. Set the new onw
